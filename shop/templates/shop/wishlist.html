@@ -1,0 +1,41 @@
+{% extends "shop/basic.html" %}
+{% block title%}Products{% endblock %}
+{% block body%}
+
+{% comment %} {{product}}
+{% for item in product %}
+{{item}}
+{%endfor%} {% endcomment %}
+
+<!--Cards-->
+	
+<div class="m-0 p-0 bg-light">
+	  <div class="container row mx-5 mt-0 pt-3 pb-5 text-capitalize ">
+      <h2 class="text-center fw-bold text-danger bg-light py-3">Wishlist</h2>
+	  
+	  {%for i in product%}
+	  <div class="card m-3 p-2 " style="width: 18rem">
+	  <h4>{{i.product.subcategory}}</h4>
+	  <h5 id="name{{i.product.id}}" class="card-title">{{i.product.product_name}}</h5>
+	  <img
+		  src="/media/{{i.product.image}}"	
+		  class="card-img-top  "
+		  alt={{i.product.product_name}}"image"
+		  height="200"
+		  width="200" />
+	  <div class="card-body">
+		  <p id="desc{{i.product.id}}" class="card-text">
+			  {{i.product.desc|slice:"0:30"}}
+		  </p>
+		  <p class="card-text">Price:<b> &#8377;{{i.product.price}}</b></p>
+          <div class="d-flex justify-content-around px-2 mb-2">
+		  <a href="{% url 'productView' i.product.id %}" id="pr{{i.product.id}}" class="btn btn-primary">Details</a>
+          <a href="{% url 'RemoveFromWishlist' i.product.id %}" id="pr{{i.product.id}}" class="btn btn-danger">
+            <i class="fa fa-trash width-16"></i>Remove</a>
+          </div>
+	  </div>
+	  </div>
+	  {% endfor %}
+	  </div>
+
+{%endblock body%}

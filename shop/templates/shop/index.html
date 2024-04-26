@@ -1,0 +1,128 @@
+{% extends "shop/basic.html" %}
+{% block title%} 1StepSol {% endblock %}
+{%block css%} 
+{% comment %}
+<style>
+	.col-md-3 {
+		display: inline-block;
+		margin-left: -4px;
+	}
+
+	.col-md-3 img {
+		width: 100%;
+		height: auto;
+	}
+
+	body .carousel-indicator li {
+		background-color: blue;
+	}
+
+	body .carousel-control-prev-icon,
+	body .carousel-control-next-icon {
+		background-color: blue;
+	}
+
+	body .no-padding {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+</style>
+{% endcomment %} 
+{% endblock %}
+
+{% block body%}
+
+<!--Carousal-->
+<div id="carouselExampleIndicators" class="carousel slide">
+	<div class="carousel-indicators">
+		<button
+			type="button"
+			data-bs-target="#carouselExampleIndicators"
+			data-bs-slide-to="0"
+			class="active"
+			aria-current="true"
+			aria-label="Slide 1"></button>
+		<button
+			type="button"
+			data-bs-target="#carouselExampleIndicators"
+			data-bs-slide-to="1"
+			aria-label="Slide 2"></button>
+		<button
+			type="button"
+			data-bs-target="#carouselExampleIndicators"
+			data-bs-slide-to="2"
+			aria-label="Slide 3"></button>
+	</div>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img
+				src="https://source.unsplash.com/1600x500/?ecommerce"
+				class="d-block w-100"
+				alt="..." />
+		</div>
+		<div class="carousel-item">
+			<img
+				src="https://source.unsplash.com/1600x500/?books"
+				class="d-block w-100"
+				alt="..." />
+		</div>
+		<div class="carousel-item">
+			<img
+				src="https://source.unsplash.com/1600x500/?tech"
+				class="d-block w-100"
+				alt="..." />
+		</div>
+	</div>
+	<button
+		class="carousel-control-prev shadow"
+		type="button"
+		data-bs-target="#carouselExampleIndicators"
+		data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button
+		class="carousel-control-next shadow"
+		type="button"
+		data-bs-target="#carouselExampleIndicators"
+		data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</div>
+
+<!--Product's cards-->
+<div class="prodViewOuter">
+    <div class="prodViewInner text-capitalize">
+	{% for product, range, nSlides in allProds %}
+  
+	  <h3 class="text-center text-success bg-light py-3">
+	  {{product.0.category}}
+	  </h3>
+	  <div class="container row mx-5">
+
+	  {%for i in product%}
+	  <div class="card m-3 p-2 shadow" style="width: 18rem">
+	  <h4>{{i.subcategory}}</h4>
+	  <h5 id="name{{i.id}}" class="card-title">{{i.product_name}}</h5>
+	  <img
+		  src="/media/{{i.image}}"	
+		  class="card-img-top  "
+		  alt={{i.product_name}}"image"
+		  height="200"
+		  width="200" />
+	  <div class="card-body">
+		  <p id="desc{{i.id}}" class="card-text">
+			  {{i.desc|slice:"0:30"}}
+		  </p>
+		  <p class="card-text">Price:<b> &#8377;{{i.price}}</b></p>
+		  <a href="{% url 'productView' i.id %}" id="pr{{i.id}}" class="btn btn-primary">Details</a>
+	  </div>
+	  </div>
+	  {% endfor %}
+	  </div><hr>
+	{% endfor%}
+    </div>
+</div>
+
+{% endblock %}

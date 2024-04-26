@@ -1,0 +1,89 @@
+{% extends "shop/basic.html"%}
+{% block title%}Product Details{% endblock %}
+
+{%block body%}
+{% for item in myproduct%}
+<div class="modal position-static d-block bg-body-secondary py-md-5 p-5" >
+
+      <div class="modal-content px-5 rounded-2 shadow">
+        <div class="modal-body p-5 text-capitalize">
+          <h2 class="fw-bold mb-0 ">{{item.category}}</h2>
+
+          <ul class="d-grid gap-4 my-5 list-unstyled small mb-2">
+            <li class="d-flex gap-3">
+                <div>
+                    <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
+                    <img class="border border-secondary shadow border-light  pb-0 mb-0 px-3" src="/media/{{item.image}}" height="275px" width="300px"/>
+                </div>
+                <aside class="px-4  container-fluid">
+                    <div class="m-2 p-2">
+                        <h1 class="mb-2">{{item.product_name}}</h1>
+                        <br>
+                        <div class="d-flex">
+                            <h5 class="fw-normal"> Selling Price : <b>&#8377;{{item.price}}</b></h5>
+                            {% comment %} 
+                            <form action"/addtowishlist/" method="POST">
+                              {%csrf_token%}
+                              <input type="hidden" value="{{item.id}}" name="product_id">
+                            </form> 
+                            {% endcomment %}
+                            <a type="button" href="{%url "AddToWishlist" item.id%}" class="btn btn-danger mb-2 mx-5 ">Add to Wishlist</a>
+                            
+                        </div>
+                    </div>
+                    <hr>
+                    <div class=" container m-2 p-2">
+                        <p>condition : <b>{{item.condn}}</b></p>
+                        <p>Posted : <b>{{item.pub_date}}</b></p>
+                    </div>
+                </aside>
+            </li>
+            <hr>
+            <li class="d-flex gap-2">
+                <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
+                <div class=" container">
+                    <h3 class="fw-normal mt-0">Description :</h3>
+                    <p class="mx-4 px-5">{{item.desc}}</p>
+                </div> 
+            </li>
+            <hr>
+            <li class="d-flex gap-5">
+                <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
+                <div>                  
+                  <h4 class="text-primary">Seller!</h4>                  
+                </div> 
+            </li>
+            <li class="d-flex gap-3 border mb-2">
+                <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
+                <h4 class="mb-0 fw-bold">{{item.seller_name}}</h4>
+            </li>
+            <li class="d-flex gap-3">
+                <svg class="bi text-warning flex-shrink-0" width="48" height="48"></svg>
+                <div>
+                  <h6 class="mb-0">Year :</h6>
+                  <p class="mx-4 px-4">{{item.curr_year}}</p>
+                </div>
+              </li>
+            <li class="d-flex gap-3">
+              <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
+              <div>
+                <h6 class="mb-0">Email :</h6>
+                <p class="mx-4 px-4">{{item.email}}</p>
+              </div>
+            </li>
+            <li class="d-flex gap-3">
+              <svg class="bi text-warning flex-shrink-0" width="48" height="48"></svg>
+              <div>
+                <h6 class="mb-0">Contact :</h6>
+                <p class="mx-4 px-4">{{item.mobno}}</p>
+              </div>
+            </li>
+          
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+{%endblock body%}

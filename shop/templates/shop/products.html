@@ -1,0 +1,46 @@
+{% extends "shop/basic.html" %}
+{% block title%}Products{% endblock %}
+{% block body%}
+
+
+
+<!--Cards-->
+	<div class="prodViewInner text-capitalize">
+		
+		<div class="products">
+			{% for product, range, nSlides in allProds %}
+		  
+			  <h3 class="text-center text-success bg-light my-3">
+			  {{product.0.category}}
+			  </h3>
+			  <div class="container row mx-5">
+			  {%for i in product%}
+			  <div class="card m-3 p-3" style="width: 18rem">
+			  <h4>{{i.subcategory}}</h4>
+			  <h5 id="name{{i.id}}" class="card-title">{{i.product_name}}</h5>
+			  <img
+				  src="/media/{{i.image}}"
+				  class="card-img-top"
+				  alt={{i.product_name}}"image"
+				  height="200"
+				  width="200" />
+			  <div class="card-body">
+				  <p id="desc{{i.id}}" class="card-text">
+					  {{i.desc|slice:"0:30"}}
+				  </p>
+				  <div class="d-flex justify-content-around mb-2">
+				  <a href="{% url 'productView' i.id %}"  class="btn btn-primary mb-2 ">Details</a>
+				  <a  href="{%url "AddToWishlist" i.id%}" class="btn btn-danger mb-2  ">Wishlist</a>
+				  </div>
+			  </div>
+			  </div>
+			  {% endfor %}
+			  </div>
+			{% endfor%}
+		  </div>
+		
+		
+		</div>
+
+
+{% endblock %}

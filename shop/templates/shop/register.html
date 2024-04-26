@@ -1,0 +1,75 @@
+{% extends "shop/basic.html" %} 
+{% block title%}Register{% endblock %} 
+
+
+
+
+{% block body%}
+
+
+
+<!--Register Form-->
+<div
+	class="form d-flex justify-content-center align-items-center bg-secondary text-secondary-emphasis">
+	<main class="w-25 mx-1 px-1 py-3">
+		<form action="/auth/register/" method="post" class="border border-2 rounded-4 p-2">{%csrf_token%}
+			<img
+				class="mb-4 border border-4 rounded-pill"
+				src="/static/shop/favicon1.png"
+				alt="1StepSoln logo"
+				width="72"
+				height="57" />
+			<h1 class="h3 mb-3 fw-bold text-light">Register</h1>
+
+			<div class="form-floating my-1">
+				<input
+					type="text"
+					class="form-control"
+					id="name"
+					name="name"
+					placeholder="FirstName Surname"
+					required />
+				<label for="name">Name</label>
+			</div>
+			<div class="form-floating mb-1">
+				<input
+					type="email"
+					class="form-control"
+					id="email"
+					name="email"
+					placeholder="name@example.com"
+					required />
+				<label for="email">Email address</label>
+			</div>
+			<div class="form-floating mb-1">
+				<input
+					type="password"
+					class="form-control"
+					id="pass1"
+					name="pass1"
+					placeholder="Password"
+					required />
+				<label for="pass1">Password</label>
+			</div>
+			<div class="form-floating mb-2">
+				<input
+					type="password"
+					class="form-control"
+					id="pass2"
+					name="pass2"
+					placeholder="ConfirmPassword"
+					required />
+				<label for="pass2">Conform Password</label>
+			</div>
+
+			<button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+			<div class="d-flex justify-content-center">
+			<p>Already User?</p> <a class="link-warning text-decoration-none" href="/auth/login">Login</a>
+			</div>
+
+			<p class="m-3 text-light">By clicking Sign up, you agree to the terms of use.</p>
+			<p class="m-3 text-body-secondary">© 2023-2024</p>
+		</form>
+	</main>
+</div>
+{% endblock %}
