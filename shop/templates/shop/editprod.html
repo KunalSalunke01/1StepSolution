@@ -1,0 +1,169 @@
+{% extends "shop/basic.html" %} 
+{% block title%}Edit Product{% endblock %}
+{%block body%}
+<div class="bg-secondary-subtle text-dark p-2">
+	<div class="m-3 px-3">
+		<h2>Edit Product</h2>
+	</div>
+	<form class="w-50 m-3 p-4" action="/editproduct/{{myproduct.id}}" method="POST" enctype="multipart/form-data">
+		{%csrf_token%}
+		<h4 class="text-info fw-normal" >Product Details</h4>
+		<div class=" mb-3">
+			<label for="prodname">Product Name</label>
+			<input
+				type="text"
+				class="form-control"
+				id="prodname"
+				name="prodname"
+				value="{{myproduct.product_name}}" />
+		</div>
+
+		<div class=" mb-3">
+			<label for="desc">Description</label>
+			<input
+				type="text"
+				class="form-control"
+				id="desc"
+				name="desc"
+				value="{{myproduct.desc}}" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<select
+				class="form-select"
+				id="category"
+				name="category"
+				required>
+				<option value="{{myproduct.category}}" selected>{{myproduct.category}}</option>
+				<option value="books">Books</option>
+				<option value="instruments">Instruments</option>
+				<option value="electronics">Electronics</option>
+				<option value="clothing">Clothing</option>
+				<option value="furniture">Furniture</option>
+			</select>
+			<label for="category">Category</label>
+		</div>
+		{% comment %}
+		<div class=" mb-3">
+			<label for="subject" class="form-label">Category</label>
+			<input
+				type="text"
+				class="form-control"
+				id="category"
+				name="category"
+				value="{{myproduct.category}}" />
+		</div>
+		{% endcomment %}
+
+		<div class=" mb-3">
+			<label for="subcategory" class="form-label">SubCategory</label>
+			<input
+				type="text"
+				class="form-control"
+				id="subcategory"
+				name="subcategory"
+				value="{{myproduct.subcategory}}" />
+		</div>
+
+		<div class="input-group mb-3">
+            <div class=" mb-1">
+            {%if myproduct.image%}
+                <img src="{{myproduct.image.url}}" alt="{{myproduct.product_name}} image" class="img-fluid rounded" style="max-width:20%"/>
+            {%endif%}
+             image
+            </div>
+			<input type="file" class="form-control" id="picfile" name="picfile" />
+			<label class="input-group-text" for="picfile">Upload</label>
+		</div>
+
+		<div class=" mb-3">
+			<label for="price">Price</label>
+			<input
+				type="Number"
+				class="form-control"
+				id="price"
+				name="price"
+				value="{{myproduct.price}}" />
+		</div>
+		<fieldset class="row mb-3">
+			<legend class="col-form-label col-sm-2 pt-0" value"{{myproduct.condn}}">Radios</legend>
+			<div class="col-sm-10">
+				<div class="form-check">
+					<label class="form-check-label" for="a1"> A1 </label>
+					<input
+						class="form-check-input"
+						type="radio"
+						name="condition"
+						id="a1"
+						value="A1"
+						checked />
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="fair"> Fair </label>
+					<input
+						class="form-check-input"
+						type="radio"
+						name="condition"
+						id="fair"
+						value="Fair" />
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="poor"> Poor </label>
+					<input
+						class="form-check-input"
+						type="radio"
+						name="condition"
+						id="poor"
+						value="Poor" />
+				</div>
+			</div>
+		</fieldset>
+		<h4 class="text-info fw-normal" >Student Details</h4>
+        <div class=" mb-3">
+            <label for="sellername">Seller</label>
+			<input
+				type="text"
+				class="form-control"
+				id="sellername"
+				name="sellername"
+				value="{{myproduct.seller_name}}" />
+		</div>
+		<div class=" mb-3">
+			<label for="year">Year</label>
+			<select
+				class="form-select"
+				id="year"
+				name="year"
+                value="{{myproduct.curr_year}}"
+				aria-label="Floating label select example">
+				<option value="{{myproduct.curr_year}}" selected>{{myproduct.curr_year}}</option>
+				<option value="1">FE</option>
+				<option value="2">SE</option>
+				<option value="3">TE</option>
+			</select>
+		</div>
+
+		<div class="mb-3">
+            <label for="contact">Mobile Number</label>
+			<input
+				type="tel"
+				class="form-control"
+				id="contact"
+				name="contact"
+				value="{{myproduct.mobno}}" />
+		</div>
+
+		<div class=" mb-3">
+            <label for="email">Email</label>
+			<input
+				type="email"
+				class="form-control"
+				id="email"
+				name="email"
+				value="{{myproduct.email}}" />
+		</div>
+
+		<button type="submit" class="btn btn-primary m-2">Update</button>
+	</form>
+</div>
+{% endblock %}

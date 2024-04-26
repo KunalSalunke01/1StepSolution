@@ -1,0 +1,162 @@
+{% extends "shop/basic.html" %} 
+{% block title%}List Product{% endblock %}
+{%block body%}
+<div class="bg-secondary-subtle text-dark p-2">
+	<div class="m-3 px-3">
+		<h2>List Product</h2>
+	</div>
+	<form class="w-50 m-3 p-4" action="/sell/" method="post" enctype="multipart/form-data">
+		{%csrf_token%}
+		<h4 class="text-info fw-normal" >Product Details</h4>
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control"
+				id="prodname"
+				name="prodname"
+				placeholder="Product Name" required/>
+			<label for="prodname">Product Name</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control"
+				id="desc"
+				name="desc"
+				placeholder="Description" required />
+			<label for="desc">Description</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<select
+				class="form-select"
+				id="category"
+				name="category"
+				required>
+				<option>None</option>
+				<option value="books" selected>Books</option>
+				<option value="instruments">Instruments</option>
+				<option value="electronics">Electronics</option>
+				<option value="clothing">Clothing</option>
+				<option value="furniture">Furniture</option>
+			</select>
+			<label for="category">Category</label>
+		</div>
+		{% comment %}
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control"
+				id="category"
+				name="category"
+				placeholder="Enter Category" />
+			<label for="subject" class="form-label">Category</label>
+		</div>
+		{% endcomment %}
+
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control"
+				id="subcategory"
+				name="subcategory"
+				placeholder="Enter SubCategory" />
+			<label for="subcategory" class="form-label">SubCategory</label>
+		</div>
+
+		<div class="input-group mb-3">
+			<input type="file" class="form-control" id="picfile" name="picfile" required />
+			<label class="input-group-text" for="picfile">Upload</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<input
+				type="Number"
+				class="form-control"
+				id="price"
+				name="price"
+				placeholder="Price" required/>
+			<label for="price">Price</label>
+		</div>
+		<fieldset class="row mb-3">
+			<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+			<div class="col-sm-10">
+				<div class="form-check">
+					<input
+						class="form-check-input"
+						type="radio"
+						name="condition"
+						id="a1"
+						value="A1"
+						checked />
+					<label class="form-check-label" for="a1"> A1 </label>
+				</div>
+				<div class="form-check">
+					<input
+						class="form-check-input"
+						type="radio"
+						name="condition"
+						id="fair"
+						value="Fair" />
+					<label class="form-check-label" for="fair"> Fair </label>
+				</div>
+				<div class="form-check">
+					<input
+						class="form-check-input"
+						type="radio"
+						name="condition"
+						id="poor"
+						value="Poor" />
+					<label class="form-check-label" for="poor"> Poor </label>
+				</div>
+			</div>
+		</fieldset>
+		<h4 class="text-info fw-normal" >Student Details</h4>
+		<div class="form-floating mb-3">
+            <input
+				type="text"
+				class="form-control"
+				id="sellername"
+				name="sellername"
+				placeholder="Seller"
+				value="{{myproduct.seller_name}}" required/>
+				<label for="sellername">Seller</label>
+		</div>
+		<div class="form-floating mb-3">
+			<select
+				class="form-select"
+				id="year"
+				name="year">
+				<option selected>Studying Year</option>
+				<option value="1">FE</option>
+				<option value="2">SE</option>
+				<option value="3">TE</option>
+			</select>
+			<label for="year">Year</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<input
+				type="tel"
+				class="form-control"
+				id="contact"
+				name="contact"
+				placeholder="91-xxxxxxxxxx" required/>
+			<label for="contact">Mobile Number</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<input
+				type="email"
+				class="form-control"
+				id="email"
+				name="email"
+				placeholder="Email" required/>
+			<label for="email">Email</label>
+		</div>
+
+		<button type="submit" class="btn btn-primary m-2">Post</button>
+	</form>
+</div>
+{% endblock %}

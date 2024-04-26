@@ -1,0 +1,95 @@
+{% extends "shop/basic.html" %} 
+
+{% block title%}MyProfile{% endblock %}
+{%block body%}
+
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" >
+    <div class="modal-dialog" >
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-body p-5">
+          <h2 class="fw-bold mb-0">My Profile</h2>
+          <ul class="d-grid gap-4 my-5 list-unstyled small mb-2">
+
+            <li class="d-flex justify-content-center">
+                <div>
+                    <img class="border border-secondary shadow border-5 rounded-circle pb-0 mb-0" src="/static/shop/profile.png" height="100px" width=auto/>
+                </div>
+            </li>
+
+            <li class="d-flex justify-content-center m-0 ">
+                <div>                  
+                  <h5 class="text-success">WELCOME!</h5>                  
+                </div> 
+            </li>
+            <li class="d-flex justify-content-center border mb-2">
+                <h4 class="mb-0 fw-bold">{{user.first_name}} {{user.last_name}}</h4>
+            </li>
+            <li class="d-flex gap-3">
+              <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
+              <div>
+                <h5 class="mb-0">Username</h5>
+                {{user.username}}
+              </div>
+            </li>
+            <li class="d-flex gap-3">
+              <svg class="bi text-warning flex-shrink-0" width="48" height="48"></svg>
+              <div>
+                <h5 class="mb-0">Email</h5>
+                {{user.email}}
+              </div>
+            </li>
+            <li class="d-flex gap-3">
+              <svg class="bi text-warning flex-shrink-0" width="48" height="48"></svg>
+              <div>
+                <h5><a class="text-decoration-none text-primary" href="#empt">My Ads</a></h5>
+              </div>
+            </li>
+          </ul>
+          <a  href="/auth/logout/" id="Logout" class="btn btn-lg btn-danger mt-5 w-100">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div style="height: 10vh;" class="bg-body-secondary" id="empt"></div>
+
+<div class="modal position-static d-block bg-body-secondary py-md-5 p-5" id="mylisting">
+<div class="modal-content px-4 rounded-2 shadow" >
+<h3 class="text-primary mt-4">My Ads</h3>
+{% if allProds %}
+
+{%for  product, range, nSlides in allProds%}
+
+<div class="container row mx-1 modal-body p-1 pb-5 ">
+{%for i in product%}
+	  <div class="card m-3 p-2" style="width: 18rem">
+	  <h4>{{i.subcategory}}</h4>
+	  <h5 id="name{{i.id}}" class="card-title">{{i.product_name}}</h5>
+	  <img
+		  src="/media/{{i.image}}"	
+		  class="card-img-top  "
+		  alt={{i.product_name}}"image"
+		  height="225"
+		  width="200" />
+	  <div class="card-body">
+		  <p id="desc{{i.id}}" class="card-text">
+			  {{i.desc|slice:"0:30"}}
+		  </p>
+		  <p class="card-text">Price:<b> &#8377;{{i.price}}</b></p>
+    </div>
+    <div class="d-flex justify-content-around px-2 mb-2">
+		  <a href="{% url 'EditProduct' i.id %}" id="pr{{i.id}}" class="btn btn-info">Update</a>
+		  <a href="{% url 'DeleteProduct' i.id %}" id="pr{{i.id}}" class="btn btn-danger">Delete</a>
+	  </div>
+	  </div>
+{% endfor %}
+  </div>
+{%endfor%}
+{% else %}
+<div class="border m-5 p-5 shadow">
+  <h4 class="my-5 py-3 text-center">No Ads Posted</h4>
+</div>
+{% endif %}
+
+</div>
+{%endblock body%}

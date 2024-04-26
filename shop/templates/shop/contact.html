@@ -1,0 +1,72 @@
+{% extends "shop/basic.html" %}
+{% block title%}Contact Us{% endblock %} 
+{%block body%}
+<div class="bg-secondary-subtle text-dark p-2">
+	<div class="m-3 px-3">
+		<h2>Needed Any Help!</h2>
+		<h3>Contact With Us</h3>
+	</div>
+	<form action="/contact/" method="post" class="w-50 m-3 p-3">
+		{%csrf_token%}
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control"
+				id="name"
+				name="name"
+				placeholder="Full name"
+				aria-label="Full name"
+				required />
+			<label for="name">Full Name</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<input
+				type="tel"
+				class="form-control"
+				id="contact"
+				name="mobno"
+				placeholder="91-xxxxxxxxxx"
+				required />
+			<label for="contact">Mobile Number</label>
+		</div>
+
+
+		<div class="form-floating mb-3">
+			<input
+				type="email"
+				class="form-control"
+				id="email"
+				name="email"
+				placeholder="xyz@gmail.com"
+				required />
+			<label for="email">Email Id</label>
+		</div>
+
+		<div class="form-floating mb-3">
+			<select class="form-select" id="year" name="curr_year" required>
+				<option selected>Current Year</option>
+				<option value="1">FE</option>
+				<option value="2">SE</option>
+				<option value="3">TE</option>
+			</select>
+			<label for="year">Studying Year</label>
+		</div> 
+
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control"
+				id="reason"
+				name="desc"
+				placeholder="Enter a valid Reason"
+				required />
+			<label for="reason" class="form-label">Reason For Contact</label>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Request</button>
+	</form>
+</div>
+
+{% endblock %}
+
